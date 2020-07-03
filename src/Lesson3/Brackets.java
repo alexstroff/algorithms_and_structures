@@ -4,7 +4,7 @@ package Lesson3;
 public class Brackets {
     public static boolean check(String input) {
         int size = input.length();
-        Stack stack = new Stack(size);
+        Stack stack = new Stack(input, size);
         for (int i = 0; i < size; i++) {
             char ch = input.charAt(i);
             if (ch == '[' || ch == '{' || ch == '(') {

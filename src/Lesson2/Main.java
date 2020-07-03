@@ -12,7 +12,6 @@ public class Main {
 //        array.deleteVal(88);
 //        array.deleteIndex(0);
 //        array.deleteAll();
-        array.sortCount2();
         System.out.println(array.toString());
 
 
