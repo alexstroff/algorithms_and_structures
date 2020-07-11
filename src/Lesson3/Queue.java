@@ -17,6 +17,38 @@ public class Queue {
         items = 0;
     }
 
+    public int getHead() {
+        return head;
+    }
+
+    public int getItems() {
+        return items;
+    }
+
+    public void setItems(int items) {
+        this.items = items;
+    }
+
+    public void setHead(int head) {
+        this.head = head;
+    }
+
+    public int getTail() {
+        return tail;
+    }
+
+    public void setTail(int tail) {
+        this.tail = tail;
+    }
+
+    public int[] getQueue() {
+        return queue;
+    }
+
+    public void setQueue(int[] queue) {
+        this.queue = queue;
+    }
+
     public boolean isEmpty() {
         return items == 0;
     }
@@ -28,6 +60,16 @@ public class Queue {
     public int size() {
         return items;
     }
+
+    public int getSize(){
+        return items;
+    }
+
+    public void setSize(int val){
+         items = val;
+    }
+
+
 
     public void insert(int value) {
         if (isFull()) {
