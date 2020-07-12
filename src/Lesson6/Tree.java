@@ -5,6 +5,11 @@ import Lesson4.Cat;
 public class Tree {
     // travers
     // delete
+    String treeName;
+
+    public Tree(String treeName) {
+        this.treeName = treeName;
+    }
 
     private class TreeNode implements Comparable {
         private Cat c;
@@ -31,6 +36,16 @@ public class Tree {
     }
 
     TreeNode root;
+
+    public void insert(Cat c, int depth){
+        if (root == null) {
+            insert(c);
+        }else {
+            while (Math.max(depth(root.right), depth(root.left)) != depth){
+                insert(c);
+            }
+        }
+    }
 
     public void insert(Cat c) {
         TreeNode node = new TreeNode(c);
@@ -77,8 +92,60 @@ public class Tree {
         }
     }
 
+    private void postOrderTravers(TreeNode current){
+        if(current != null){
+            postOrderTravers(current.left);
+            postOrderTravers(current.right);
+            System.out.print(current.c.getAge() + " ");
+        }
+    }
+
+    private void inOrderTravers(TreeNode current){
+        if(current != null){
+            inOrderTravers(current.left);
+            System.out.print(current.c.getAge() + " ");
+            inOrderTravers(current.right);
+        }
+    }
+
+
+
+
     public void displayTree() {
+        System.out.println("Tree: " + treeName);
+        System.out.println("preOrderTraverse");
         preOrderTraverse(root);
+//        System.out.println("\npostOrderTravers");
+//        postOrderTravers(root);
+//        System.out.println("\ninOrderTravers");
+//        inOrderTravers(root);
+    }
+
+    public boolean isBalansed(){
+        if (depth(root.left) - depth(root.right) == 0 ||
+            depth(root.left) - depth(root.right) == 1 ||
+            depth(root.left) - depth(root.right) == -1){
+            return true;
+        }
+        return false;
+    }
+
+    private int depth(TreeNode current){
+        int countL, countR;
+        if (current == null) return 0;
+        countL = depth(current.left);
+        countR = depth(current.right);
+        return 1 + Math.max(countL, countR);
+    }
+
+    public void showDepth(){
+        System.out.println("Left branch depth: " + depth(root.left));
+        System.out.println("Right branch depth: " + depth(root.right));
+        System.out.println("Tree depth:" + treeDepth());
+    }
+
+    public int treeDepth(){
+        return Math.max(depth(root.left), depth(root.right));
     }
 
     public boolean delete(int age) {
@@ -152,5 +219,42 @@ public class Tree {
         }
         return s;
     }
+
+//    public int depthLeftVal = 0, depthRightVal = 0, depthVal = 0;
+
+            /*
+    private boolean hasChildren(TreeNode current){
+        if (current.right != null || current.left != null){
+            return true;
+        }else return false;
+    }
+     */
+
+    /*
+    private void depthLeftBranch(TreeNode current){
+        if (current != null){
+            if (hasChildren(current)){
+                depthLeftVal++;
+            }
+            depthLeftBranch(current.left);
+            depthLeftBranch(current.right);
+        }
+
+    }
+     */
+
+        /*
+    private void depthRightBranch(TreeNode current){
+        if (current != null){
+            if (hasChildren(current)){
+                depthRightVal++;
+            }
+            depthRightBranch(current.right);
+            depthRightBranch(current.left);
+        }
+    }
+     */
+
+
 
 }
