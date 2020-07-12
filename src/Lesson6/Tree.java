@@ -37,16 +37,6 @@ public class Tree {
 
     TreeNode root;
 
-    public void insert(Cat c, int depth){
-        if (root == null) {
-            insert(c);
-        }else {
-            while (Math.max(depth(root.right), depth(root.left)) != depth){
-                insert(c);
-            }
-        }
-    }
-
     public void insert(Cat c) {
         TreeNode node = new TreeNode(c);
         if (root == null) {
