@@ -91,6 +91,12 @@ public class Queue {
         items++;
     }
 
+    public void removeAll(){
+        head = 0;
+        tail = -1;
+        items = 0;
+    }
+
     public int remove() {
         if (isEmpty())
             throw new NoSuchElementException("Queue is empty");

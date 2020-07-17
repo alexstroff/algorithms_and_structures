@@ -71,22 +71,48 @@ public class Graph {
         resetFlags();
     }
 
-    public void widthTraverse() {
+    public void widthTraverse(int a, int b) {
         Queue queue = new Queue(MAX_VERTICES);
-        vertexList[0].wasVisited = true;
-        displayVertex(0);
-        queue.insert(0);
+        vertexList[a].wasVisited = true;
+//        displayVertex(a);
+        queue.insert(a);
         while (!queue.isEmpty()) {
             int vCurrent = queue.remove();
+
             displayVertex(vCurrent);
             int vNext;
             while ((vNext = getUnvisitedVertex(vCurrent)) != -1) {
+                if (vNext == b) {
+                    displayVertex(vNext);
+                    queue.removeAll();
+                    break;
+                }
                 vertexList[vNext].wasVisited = true;
                 queue.insert(vNext);
             }
         }
 
     }
+
+
+
+
+//    public void widthTraverse() {
+//        Queue queue = new Queue(MAX_VERTICES);
+//        vertexList[0].wasVisited = true;
+//        displayVertex(0);
+//        queue.insert(0);
+//        while (!queue.isEmpty()) {
+//            int vCurrent = queue.remove();
+//            displayVertex(vCurrent);
+//            int vNext;
+//            while ((vNext = getUnvisitedVertex(vCurrent)) != -1) {
+//                vertexList[vNext].wasVisited = true;
+//                queue.insert(vNext);
+//            }
+//        }
+//
+//    }
 
     private void resetFlags() {
         for (int i = 0; i < size; i++) {
